@@ -91,6 +91,8 @@ def iniciar_jogo():
 
     # MOVIMENTAÇÃO, COLISÃO E BÔNUS 
 
+    # Matriz, estruturação e agrupamento de inimigos
+    
     inimigos = []
     linhas, colunas = 3, 6
     cores = ["red", "magenta", "orange", "#ff6666"]
@@ -203,9 +205,7 @@ def iniciar_jogo():
     screen.onkeypress(up, "Up"); screen.onkeypress(down, "Down")
     screen.onkeypress(atirar, "space")
 
-    # ==========================================================
     # LOOP DO JOGO E FIM DE JOGO
-    # ==========================================================
 
     jogando = True; game_over = False
     while jogando:
@@ -217,7 +217,6 @@ def iniciar_jogo():
         checar_colisoes()
         mover_tiros()
 
-        # Checar se o nível acabou
         if not any(i.isvisible() for linha in inimigos for i in linha):
             nivel += 1
             for t in tiros: t.hideturtle(); t.setposition(0, -400)
@@ -225,7 +224,6 @@ def iniciar_jogo():
 
     if game_over: tela_game_over(nome_jogador, pontuacao)
 
-# Início do jogo
 try:
     iniciar_jogo()
     turtle.done()
